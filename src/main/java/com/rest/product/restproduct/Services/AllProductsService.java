@@ -30,7 +30,7 @@ public class AllProductsService {
 
     }
 
-    public AllProducts addProduct(AllProducts b, MultipartFile file) throws Exception{
+    public AllProducts addProduct(AllProducts b, MultipartFile image0, MultipartFile image1, MultipartFile image2) throws Exception{
         
         AllProducts  savedProduct = new AllProducts();
         savedProduct.setProductId(b.getProductId());
@@ -39,10 +39,14 @@ public class AllProductsService {
         // savedProduct.setQuantity(b.getQuantity());
         savedProduct.setArtistId(b.getArtistId());
         savedProduct.setArtistName(b.getArtistName());
-        savedProduct.setData(ImageUtils.compressImage(file.getBytes()));
+        savedProduct.setData0(ImageUtils.compressImage(image0.getBytes()));
+        savedProduct.setData1(ImageUtils.compressImage(image1.getBytes()));
+        savedProduct.setData2(ImageUtils.compressImage(image2.getBytes()));
         savedProduct.setProductDescription(b.getProductDescription());
         savedProduct.setImageName(b.getProductName());
-        savedProduct.setImageType(file.getContentType());
+        savedProduct.setSubImageName1(b.getProductName()+'1');
+        savedProduct.setSubImageName2(b.getProductName()+'2');
+        savedProduct.setImageType(image0.getContentType());
         AllProducts  product = this.allProductsRepository.save(savedProduct);
 
         
@@ -51,13 +55,28 @@ public class AllProductsService {
         
     }
 
-    public byte[] getImageByName(String imageName){
+    public byte[] getImageByName0(String imageName){
         Optional<AllProducts> dbImageData = allProductsRepository.findByImageName(imageName);
-        byte[] images= ImageUtils.decompressImage(dbImageData.get().getData());
+        byte[] images= ImageUtils.decompressImage(dbImageData.get().getData0());
         return images;
 
 
     }
+    public byte[] getImageByName1(String imageName){
+        Optional<AllProducts> dbImageData = allProductsRepository.findBySubImageName1(imageName);
+        byte[] images= ImageUtils.decompressImage(dbImageData.get().getData1());
+        return images;
+
+
+    }
+    public byte[] getImageByName2(String imageName){
+        Optional<AllProducts> dbImageData = allProductsRepository.findBySubImageName2(imageName);
+        byte[] images= ImageUtils.decompressImage(dbImageData.get().getData2());
+        return images;
+
+
+    }
+    
 
 
 }

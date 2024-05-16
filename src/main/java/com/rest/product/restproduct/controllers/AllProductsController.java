@@ -29,14 +29,32 @@ public class AllProductsController {
     @Autowired
     private AllProductsService allProductsService;
 
-    @GetMapping("/image/{imageName}")
+    @GetMapping("/image0/{imageName}")
     @CrossOrigin("**")
-    public ResponseEntity<?> download(@PathVariable String imageName) {
-        byte[] image = allProductsService.getImageByName(imageName);
+    public ResponseEntity<?> download0(@PathVariable String imageName) {
+        byte[] image = allProductsService.getImageByName0(imageName);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/jpeg"))
                 .body(image);
     }
+    @GetMapping("/image1/{imageName}")
+    @CrossOrigin("**")
+    public ResponseEntity<?> download1(@PathVariable String imageName) {
+        byte[] image = allProductsService.getImageByName1(imageName);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf("image/jpeg"))
+                .body(image);
+    }
+    @GetMapping("/image2/{imageName}")
+    @CrossOrigin("**")
+    public ResponseEntity<?> download2(@PathVariable String imageName) {
+        byte[] image = allProductsService.getImageByName2(imageName);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf("image/jpeg"))
+                .body(image);
+    }
+    
+    
     @GetMapping  
     @CrossOrigin("**")
     public ResponseEntity<List<AllProducts>> getProducts() {
@@ -46,7 +64,7 @@ public class AllProductsController {
         }
         return ResponseEntity.of(Optional.of(list));
     }
-    // get single book
+    
      @GetMapping("/{id}")
     public ResponseEntity<AllProducts> getProduct(@PathVariable("id") int id){
         AllProducts product = allProductsService.getProductById(id);
@@ -72,18 +90,20 @@ public class AllProductsController {
     // }
 
     @PostMapping
-    public ResponseEntity<String> uploadProductWithImage(
-            @ModelAttribute AllProducts product,
-            @RequestParam("file") MultipartFile file) {
-        try {
-           allProductsService.addProduct(product, file);
-            
-            return new ResponseEntity<>("Product and image uploaded successfully", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Failed to upload product and image"+ e, HttpStatus.INTERNAL_SERVER_ERROR);
-
-        }
+public ResponseEntity<String> uploadProductWithImages(
+        @ModelAttribute AllProducts product,
+        @RequestParam("file0") MultipartFile image1,
+        @RequestParam("file1") MultipartFile image2,
+        @RequestParam("file2") MultipartFile image3) {
+    try {
+       allProductsService.addProduct(product, image1, image2, image3);
+        
+        return new ResponseEntity<>("Product and images uploaded successfully", HttpStatus.OK);
+    } catch (Exception e) {
+        return new ResponseEntity<>("Failed to upload product and images: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+}
+
 
 }
 

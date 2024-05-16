@@ -18,11 +18,21 @@ public class AllProducts {
     private String product_name;
     private float price;
     private String imageName;
+    private String subImageName1;
+    private String subImageName2;
     private String imagetype;
 
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] product_image;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] sub_image1;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] sub_image2;
     
     private String product_description;
 
@@ -79,11 +89,23 @@ public class AllProducts {
     // public String getData() {
     //     return product_image;
     // }
-    public void setData(byte[] product_image) {
+    public void setData0(byte[] product_image) {
         this.product_image = product_image;
     }
-    public byte[] getData(){
+    public byte[] getData0(){
         return this.product_image;
+    }
+    public void setData1(byte[] product_image) {
+        this.sub_image1 = product_image;
+    }
+    public byte[] getData1(){
+        return this.sub_image1;
+    }
+    public void setData2(byte[] product_image) {
+        this.sub_image2 = product_image;
+    }
+    public byte[] getData2(){
+        return this.sub_image2;
     }
     public String getProductDescription() {
         return product_description;
@@ -97,6 +119,18 @@ public class AllProducts {
     }
     public void setImageName(String imageName) {
         this.imageName = product_name;
+    }
+    public String getSubImageName1() {
+        return subImageName1;
+    }
+    public void setSubImageName1(String subImageName1) {
+        this.subImageName1 = subImageName1;
+    }
+    public String getSubImageName2() {
+        return subImageName2;
+    }
+    public void setSubImageName2(String subImageName2) {
+        this.subImageName2 =subImageName2;
     }
     public String getImageType() {
         return imagetype;

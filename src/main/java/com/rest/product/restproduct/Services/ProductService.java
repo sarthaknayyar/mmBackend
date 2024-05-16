@@ -83,7 +83,7 @@ public class ProductService {
         savedProduct.setArtistName(product.getArtistName());
         savedProduct.setProductId(product.getProductId());
         savedProduct.setProductDescription(product.getProductDescription());
-        savedProduct.setData(file.getBytes());
+        // savedProduct.setData(file.getBytes());
 
         
 

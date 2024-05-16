@@ -39,7 +39,7 @@ public class ProductController {
         }
         return ResponseEntity.of(Optional.of(list));
     }
-    // get single book
+    
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable("id") int id){
         Product product = productService.getProductById(id);
@@ -49,32 +49,33 @@ public class ProductController {
         return ResponseEntity.of(Optional.of(product));
 
     }
-    // add book
+   
     
-    // @PostMapping
-    // public ResponseEntity<Product> addProduct(@RequestBody Product product){
-          
-    //     try {
-    //         Product b = this.productService.addProduct(product);
-    //         System.out.println(product);
-    //         return ResponseEntity.status(HttpStatus.CREATED).build();
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    //     }
-    // }
-
     @PostMapping
-    public ResponseEntity<?> uploadProductWithImage(
-            @ModelAttribute Product product,
-            @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<Product> addProduct(@RequestBody Product product){
+          
         try {
-            productService.saveProductWithImage(product, file);
-            return new ResponseEntity<>("Product and image uploaded successfully", HttpStatus.OK);
+            System.out.println(product);
+            Product b = this.productService.addProduct(product);
+            System.out.println(product);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
-            return new ResponseEntity<>("Failed to upload product and image", HttpStatus.INTERNAL_SERVER_ERROR);
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    // @PostMapping
+    // public ResponseEntity<?> uploadProductWithImage(
+    //         @ModelAttribute Product product,
+    //         @RequestParam("file") MultipartFile file) {
+    //     try {
+    //         productService.saveProductWithImage(product, file);
+    //         return new ResponseEntity<>("Product and image uploaded successfully", HttpStatus.OK);
+    //     } catch (Exception e) {
+    //         return new ResponseEntity<>("Failed to upload product and image", HttpStatus.INTERNAL_SERVER_ERROR);
+    //     }
+    // }
     @DeleteMapping("/{id}")
     public ResponseEntity<Product> deleteProduct(@PathVariable("id") int id){
         try {
