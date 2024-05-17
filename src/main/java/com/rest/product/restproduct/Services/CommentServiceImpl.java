@@ -4,7 +4,6 @@ import com.rest.product.restproduct.entities.Comment;
 import com.rest.product.restproduct.entities.Post;
 import com.rest.product.restproduct.dao.CommentRepository;
 import com.rest.product.restproduct.dao.PostRepository;
-// import com.masterPieceMart.blogServer.repository.PostRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

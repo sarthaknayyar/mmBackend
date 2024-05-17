@@ -3,8 +3,6 @@ package com.rest.product.restproduct.Services;
 import ch.qos.logback.core.pattern.parser.OptionTokenizer;
 import com.rest.product.restproduct.entities.Post;
 import com.rest.product.restproduct.dao.PostRepository;
-import com.rest.product.restproduct.dao.ProductRepository;
-
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

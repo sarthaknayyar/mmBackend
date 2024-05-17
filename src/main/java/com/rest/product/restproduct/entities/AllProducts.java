@@ -34,6 +34,7 @@ public class AllProducts {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] sub_image2;
     
+    @Column(length = 5000)
     private String product_description;
 
     // add default constructor

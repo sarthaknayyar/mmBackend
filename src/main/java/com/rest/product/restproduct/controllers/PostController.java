@@ -1,4 +1,5 @@
 package com.rest.product.restproduct.controllers;
+
 import com.rest.product.restproduct.entities.Post;
 import com.rest.product.restproduct.Services.PostService;
 import jakarta.persistence.EntityNotFoundException;
@@ -64,4 +65,6 @@ public class PostController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+
 }

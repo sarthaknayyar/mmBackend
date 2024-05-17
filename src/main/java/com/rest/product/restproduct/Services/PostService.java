@@ -1,4 +1,5 @@
 package com.rest.product.restproduct.Services;
+
 import com.rest.product.restproduct.entities.Post;
 
 import java.util.List;
